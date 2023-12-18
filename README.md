@@ -18,16 +18,16 @@ GitHub Action for [Semantic Release][semantic-url].
 ```yaml
 steps:
   - name: Checkout
-    uses: actions/checkout@v3
+    uses: actions/checkout@v4
   - name: Semantic Release
-    uses: cycjimmy/semantic-release-action@v3
+    uses: cycjimmy/semantic-release-action@v4
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 ```
 
 **IMPORTANT**: `GITHUB_TOKEN` does not have the required permissions to operate on protected branches.
-If you are using this action for protected branches, replace `GITHUB_TOKEN` with [Personal Access Token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line). If using the `@semantic-release/git` plugin for protected branches, avoid persisting credentials as part of `actions/checkout@v3` by setting the parameter `persist-credentials: false`. This credential does not have the required permission to operate on protected branches.
+If you are using this action for protected branches, replace `GITHUB_TOKEN` with [Personal Access Token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line). If using the `@semantic-release/git` plugin for protected branches, avoid persisting credentials as part of `actions/checkout@v4` by setting the parameter `persist-credentials: false`. This credential does not have the required permission to operate on protected branches.
 
 #### Private Packages
 
@@ -61,21 +61,19 @@ then make sure that you configure this in your `package.json` file:
 ```yaml
 steps:
   - name: Checkout
-    uses: actions/checkout@v3
+    uses: actions/checkout@v4
   - name: Semantic Release
-    uses: cycjimmy/semantic-release-action@v3
+    uses: cycjimmy/semantic-release-action@v4
     with:
       semantic_version: 19.0.5  # It is recommended to specify a version range
                                 # for semantic-release when using
-                                # semantic-release-action lower than @v3
+                                # semantic-release-action lower than @v4
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 ```
 
-If no version range is specified with `cycjimmy/semantic-release-action@v3` then [semantic-release](https://github.com/semantic-release/semantic-release/) version [19.0.5](https://github.com/semantic-release/semantic-release/releases/tag/v19.0.5) is used. Earlier versions of `cycjimmy/semantic-release-action` default to using the latest version of [semantic-release](https://github.com/semantic-release/semantic-release/), so in this case it is recommended to specify version 19 or lower to avoid compatibility issues.
-
-*Note: [Version 20.0.0](https://github.com/semantic-release/semantic-release/releases/tag/v20.0.0) of [semantic-release](https://github.com/semantic-release/semantic-release/) and later is currently incompatible with `cycjimmy/semantic-release-action`, since it requires Node.js 18. GitHub does not provide this environment yet for [JavaScript actions](https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#runs-for-javascript-actions).*
+If no version range is specified with `cycjimmy/semantic-release-action@v4` then [semantic-release](https://github.com/semantic-release/semantic-release/) version [21.1.1](https://github.com/semantic-release/semantic-release/releases/tag/v21.1.1) is used.
 
 #### branches
 > {Optional Input Parameter} The branches on which releases should happen.<br>`branches` supports for **semantic-release above v16**.
@@ -83,9 +81,9 @@ If no version range is specified with `cycjimmy/semantic-release-action@v3` then
 ```yaml
 steps:
   - name: Checkout
-    uses: actions/checkout@v3
+    uses: actions/checkout@v4
   - name: Semantic Release
-    uses: cycjimmy/semantic-release-action@v3
+    uses: cycjimmy/semantic-release-action@v4
     with:
       semantic_version: 16
       # you can set branches for semantic-release above v16.
@@ -129,9 +127,9 @@ See [configuration#branches](https://semantic-release.gitbook.io/semantic-releas
 ```yaml
 steps:
   - name: Checkout
-    uses: actions/checkout@v3
+    uses: actions/checkout@v4
   - name: Semantic Release
-    uses: cycjimmy/semantic-release-action@v3
+    uses: cycjimmy/semantic-release-action@v4
     with:
       semantic_version: 15.13.28
       # you can set branch for semantic-release older than v16.
@@ -154,9 +152,9 @@ Github Action Workflow:
 ```yaml
 steps:
   - name: Checkout
-    uses: actions/checkout@v3
+    uses: actions/checkout@v4
   - name: Semantic Release
-    uses: cycjimmy/semantic-release-action@v3
+    uses: cycjimmy/semantic-release-action@v4
     with:
       # You can specify specifying version range for the extra plugins if you prefer.
       extra_plugins: |
@@ -184,9 +182,9 @@ Release Config:
 ```yaml
 steps:
   - name: Checkout
-    uses: actions/checkout@v3
+    uses: actions/checkout@v4
   - name: Semantic Release
-    uses: cycjimmy/semantic-release-action@v3
+    uses: cycjimmy/semantic-release-action@v4
     with:
       dry_run: true
     env:
@@ -200,9 +198,9 @@ steps:
 ```yaml
 steps:
   - name: Checkout
-    uses: actions/checkout@v3
+    uses: actions/checkout@v4
   - name: Semantic Release
-    uses: cycjimmy/semantic-release-action@v3
+    uses: cycjimmy/semantic-release-action@v4
     with:
       ci: false
     env:
@@ -218,9 +216,9 @@ The action can be used with `extends` option to extend an existing [sharable con
 ```yaml
 steps:
   - name: Checkout
-    uses: actions/checkout@v3
+    uses: actions/checkout@v4
   - name: Semantic Release
-    uses: cycjimmy/semantic-release-action@v3
+    uses: cycjimmy/semantic-release-action@v4
     with:
       # You can extend an existing shareable configuration.
       # And you can specify version range for the shareable configuration if you prefer.
@@ -238,9 +236,9 @@ This action run semantic release in the github provided workspace by default. Yo
 ```yaml
 steps:
   - name: Checkout
-    uses: actions/checkout@v3
+    uses: actions/checkout@v4
   - name: Semantic Release
-    uses: cycjimmy/semantic-release-action@v3
+    uses: cycjimmy/semantic-release-action@v4
     with:
       # You can select another working directory like a subdirectory for example.
       working_directory: ./code
@@ -255,9 +253,9 @@ The default tag format on semantic-release is `v{version}`. You can override tha
 ```yaml
 steps:
   - name: Checkout
-    uses: actions/checkout@v3
+    uses: actions/checkout@v4
   - name: Semantic Release
-    uses: cycjimmy/semantic-release-action@v3
+    uses: cycjimmy/semantic-release-action@v4
     with:
       tag_format: custom-v${version}
     env:
@@ -285,9 +283,9 @@ steps:
 ```yaml
 steps:
   - name: Checkout
-    uses: actions/checkout@v3
+    uses: actions/checkout@v4
   - name: Semantic Release
-    uses: cycjimmy/semantic-release-action@v3
+    uses: cycjimmy/semantic-release-action@v4
     id: semantic   # Need an `id` for output variables
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
